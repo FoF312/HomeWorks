@@ -4,7 +4,8 @@
 using namespace std;
 
 int main() {
-    int x, i;
+    int x;
+    int i;
 
 // Ввод числа x и индекса i
 std::cout << "Enter number x (0 < x < 10^9): ";
@@ -16,8 +17,12 @@ if (x <= 0 || x >= 1000000000) {
 }
 std::cout << "Enter bit index i (starting from 0): ";
 std::cin >> i;
+if(i > 32)
+{
+  return 1;
+}
 // Устанавливаем i-ый бит в 1
-x |= (1 << i);
+x |= (0 << i);
 // Вывод результата
 std::cout << "Number after setting the " << i << "-th bit to 1: " << x << std::endl;
 system("pause");
