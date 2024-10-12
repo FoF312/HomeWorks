@@ -64,10 +64,7 @@ int main() {
     default:
         cout << "Invalid input, please enter -1 or 1" << endl;
         break;
-    }
-  
-    // возможно использование if, будет выглядеть   if(x == -1 || x == 1) 
-
+    }  
     return 0;
 }
 
