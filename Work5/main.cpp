@@ -13,7 +13,7 @@ int main() {
     int HighestValue = 0;
     for (int i = 0; i < MassiveLenght; i++)
     {
-        if (massive[i] % 10 == 0 || massive[i] % 10 == 7)
+        if (massive[i] % 10 == 0 || massive[i] % 10 == 7 && massive[i] != 0)
         {
             summ += massive[i];
         }
