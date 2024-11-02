@@ -1,64 +1,77 @@
 #include <iostream>
 
-const int MAX_SIZE = 10000;
+using namespace std;
 
-bool isPalindrome(int num) {
+// Функция для проверки, является ли число палиндромом
+bool isPalindrome(int num) 
+{
     int original = num;
     int reversed = 0;
 
-    while (num > 0) {
+    while (num > 0) 
+    {
         reversed = reversed * 10 + num % 10;
         num /= 10;
     }
+
     return original == reversed;
 }
 
-bool isPrime(int num) {
+// Функция для проверки, является ли число простым
+bool isPrime(int num)
+{
     if (num <= 1) return false;
-    for (int i = 2; i * i <= num; ++i) {
+    for (int i = 2; i <= sqrt(num); ++i)
+    {
         if (num % i == 0) return false;
     }
     return true;
 }
 
-int main() {
+int main() 
+{
+    const int MAX_SIZE = 10000; 
+    int sequence[MAX_SIZE]; 
     int n;
-    int arr[MAX_SIZE];
 
-
-    std::cout << "Введите количество элементов последовательности (n <= 10000): ";
-    std::cin >> n;
-    if (n < 1 || n > MAX_SIZE)
-	{
-		std::cout << "Некорректное значение повторите ввод";
-		std::cin >> n;
-	}
-
-    std::cout << "Введите элементы последовательности:\n";
-    for (int i = 0; i < n; ++i) {
-        std::cin >> arr[i];
+    cout << "Введите количество элементов в последовательности (n <= 10000): ";
+    cin >> n;
+    while (n < 1 || n > 10000)
+    {
+        cout << "Введите некорректное количество элементов в последовательности \n";
+        cout << "Введите количество элементов в последовательности (n <= 10000): ";
+        cin >> n;
     }
 
-    int newIndex = 0;
+    cout << "Введите элементы последовательности: ";
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> sequence[i];
+    }
 
-    // Обработка элементов массива
-    for (int i = 0; i < n; ++i) {
-        if (!isPalindrome(arr[i]))
-        { 
-            arr[newIndex++] = arr[i]; 
+    // Массив для хранения результата
+    int result[MAX_SIZE];
+    int resultSize = 0;
 
-            if (isPrime(arr[i]))
-            { 
-                arr[newIndex++] = arr[i]; 
-            }
+    // Удаляем палиндромы и дублируем простые числа
+    for (int i = 0; i < n; ++i)
+    {
+        if (!isPalindrome(sequence[i]) && isPrime(sequence[i]))
+        {
+            result[resultSize++] = sequence[i]; 
+            result[resultSize++] = sequence[i]; 
         }
     }
 
-    std::cout << "Полученная последовательность:\n";
-    for (int i = 0; i < newIndex; ++i) {
-        std::cout << arr[i] << " ";
+    // Выводим результат
+    cout << "Полученная последовательность: ";
+
+    for (int i = 0; i < resultSize; ++i)
+    {
+        cout << result[i] << " ";
     }
-    std::cout << std::endl;
+
+    cout << endl;
 
     return 0;
 }
